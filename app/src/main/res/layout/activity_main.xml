@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="57dp"
@@ -38,8 +38,8 @@
         android:layout_marginEnd="76dp"
         android:text="    Next   "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintStart_toEndOf="@+id/buttonPre"
+        app:layout_constraintTop_toBottomOf="@+id/answer" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -69,22 +69,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNumber" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="14dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:minHeight="48dp"
         android:text="Answer"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSend"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -92,23 +92,23 @@
         android:layout_marginEnd="59dp"
         android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintStart_toEndOf="@+id/answer"
         app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonPre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="57dp"
         android:text="previous"
-        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/answer" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="173dp"
