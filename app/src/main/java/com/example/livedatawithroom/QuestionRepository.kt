@@ -1,6 +1,7 @@
 package com.example.livedatawithroom
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 
 object QuestionRepository {
     var db:AppDatabase?=null
@@ -19,6 +20,13 @@ object QuestionRepository {
 //    )
     fun getQuestion(): List<QuestionEntities> {
         return db!!.questionDao().getAll()
+    }
+    fun questionsCountInt():Int{
+        return db!!.questionDao().getTotalNumberOfQuestionsInt()
+    }
+
+    fun questionsCountLivedata(): LiveData<Int> {
+        return db!!.questionDao().getTotalNumberOfQuestionsLiveData()
     }
 
 }

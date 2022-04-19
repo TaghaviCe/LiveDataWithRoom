@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         var buttonPre=findViewById<Button>(R.id.buttonPre)
         var buttonSend=findViewById<Button>(R.id.buttonSend)
         var answer=findViewById<EditText>(R.id.answer)
+        var score=findViewById<TextView>(R.id.score)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         var questionText = findViewById<TextView>(R.id.tvQuestion)
 
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         buttonPre.setOnClickListener {
             viewModel.chechPrev()
         }
-
+        buttonSend.setOnClickListener {
+            viewModel.chechAnswer(answer.text.toString())
+        }
         val numberObserver=Observer<Int>{ number->
              textView.text=number.toString()
              progressBar.progress=number
@@ -47,11 +50,15 @@ class MainActivity : AppCompatActivity() {
         val buttonEnabledObserverPrev= Observer<Boolean> { enable->
             buttonPre.isEnabled=enable
         }
+        val scoreObserver= Observer<Int> {
+            score.text=it.toString()
+        }
 
         viewModel.numberLiveData.observe(this,numberObserver)
-        viewModel.questionLiveData.observe(this,questionObserver)
+        viewModel.currentquestionLiveData.observe(this,questionObserver)
         viewModel.nextEnabledLiveData.observe(this,buttonEnabledObserver)
         viewModel.prevEnabledLiveData.observe(this,buttonEnabledObserverPrev)
+        viewModel.scoreLiveData.observe(this,scoreObserver)
 
 
     }

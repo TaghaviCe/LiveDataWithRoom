@@ -3,7 +3,6 @@ package com.example.livedatawithroom
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
 class MyViewModel(app:Application):AndroidViewModel(app) {
 
@@ -12,8 +11,9 @@ class MyViewModel(app:Application):AndroidViewModel(app) {
   //  val questionLiveData=MutableLiveData<String>(QuestionRepository.questionList[0])
    // private lateinit var questionCount:Int
     var questionCount:Int
+    var questionAnswer= MutableLiveData<Int>(0)
     lateinit var questionList:List<QuestionEntities>
-    var questionLiveData=MutableLiveData<QuestionEntities>()
+    var currentquestionLiveData=MutableLiveData<QuestionEntities>()
     var nextEnabledLiveData = MutableLiveData<Boolean>(true)
     var prevEnabledLiveData = MutableLiveData<Boolean>(true)
     var scoreLiveData=MutableLiveData<Int>(0)
@@ -21,8 +21,9 @@ class MyViewModel(app:Application):AndroidViewModel(app) {
     init {
         QuestionRepository.initDB(app.applicationContext)
         questionList=QuestionRepository.getQuestion()
-        questionLiveData.value=questionList[0]
+        currentquestionLiveData.value=questionList[0]
         questionCount=questionList.size
+        questionAnswer.value=questionList[0].answer
 
         //
     }
@@ -32,7 +33,8 @@ class MyViewModel(app:Application):AndroidViewModel(app) {
         prevEnabledLiveData.value=true
         numberLiveData.value.let { number->
             if(questionCount> numberLiveData.value!!){
-                questionLiveData.value=questionList[number!!]
+                currentquestionLiveData.value=questionList[number!!]
+                questionAnswer.value=questionList[number!!].answer
 
             }else{
                 nextEnabledLiveData.value=false
@@ -45,7 +47,8 @@ class MyViewModel(app:Application):AndroidViewModel(app) {
         nextEnabledLiveData.value=true
         numberLiveData.value.let { number->
             if( numberLiveData.value!=0){
-                questionLiveData.value=questionList[number!!]
+                currentquestionLiveData.value=questionList[number!!]
+                questionAnswer.value=questionList[number!!].answer
 
 
             }else{
@@ -54,6 +57,15 @@ class MyViewModel(app:Application):AndroidViewModel(app) {
             }
 
         }
+    }
+    fun chechAnswer(number:String){
+         var num=number.toInt()
+        if(num==questionAnswer.value){
+            scoreLiveData.value=scoreLiveData.value?.plus(5)
+        }else{
+            scoreLiveData.value=scoreLiveData.value?.minus(2)
+        }
+
     }
 
 }
