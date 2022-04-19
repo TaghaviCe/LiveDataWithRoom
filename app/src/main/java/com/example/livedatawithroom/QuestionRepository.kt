@@ -8,9 +8,9 @@ object QuestionRepository {
       db= AppDatabase.getAppDataBase(context)
         var questionDao=db?.questionDao()
         questionDao?.insertAll(
-            QuestionEntities(1,"q1",30),
-            QuestionEntities(2,"q2",40),
-            QuestionEntities(3,"q3",69))
+            QuestionEntities(1,"2+3",5),
+            QuestionEntities(2,"4+5",9),
+            QuestionEntities(3,"6+7",13))
     }
 //    val questionList = arrayListOf(
 //        " result of 2 + 2 " ,
